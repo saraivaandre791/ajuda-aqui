@@ -42,11 +42,9 @@ if(mysqli_query($conn, $sql_candidato)){
         echo "Erro endereço: " . mysqli_error($conn); 
     }
 
-    // Mensagem final de sucesso + link para login
-    echo "Cadastro de candidato realizado com sucesso!";
-    echo "<br><a href='../frontend/html/login_candidato.html'><button>Ir para Login</button></a>";
-}else{
-    // Se houve erro ao inserir o candidato, mostra mensagem
-    echo "Erro: " . mysqli_error($conn);
-}    
+    // Mensagem final de sucesso + redirecionamento para peerfil
+    header("Location: perfil_candidato.php?id=$candidato_id");
+    exit;
+    
+}
 ?>

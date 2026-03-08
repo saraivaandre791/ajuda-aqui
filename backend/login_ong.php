@@ -11,6 +11,7 @@ $result = mysqli_query($conn, $sql);
 if(mysqli_num_rows($result) > 0){
     $_SESSION['tipo'] = "ong";
     $_SESSION['login'] = $login;
+    // Redireciona para o dashboard de ONG
     header("Location: dashboard_ong.php");
     exit;
 }else {
