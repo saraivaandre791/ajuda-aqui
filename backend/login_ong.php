@@ -2,19 +2,22 @@
 session_start();
 include("conexao.php");
 
-$login = $_POST['login'];
-$senha = $_POST['senha'];
+$login = $_POST['login'] ?? '';
+$senha = $_POST['senha'] ?? '';
 
 $sql = "SELECT * FROM login_ong WHERE login='$login' AND senha='$senha'";
 $result = mysqli_query($conn, $sql);
 
-if(mysqli_num_rows($result) > 0){
+if ($result && mysqli_num_rows($result) > 0) {
+    $row = mysqli_fetch_assoc($result);
+
+    $_SESSION['id'] = $row['id']; // igual ao candidato
     $_SESSION['tipo'] = "ong";
-    $_SESSION['login'] = $login;
-    // Redireciona para o dashboard de ONG
-    header("Location: dashboard_ong.php");
+    $_SESSION['login'] = $row['login'];
+
+    header("Location: painel_ong.php");
     exit;
-}else {
-    echo "Usuário ou senha invalidos";
+} else {
+    echo "Usuário ou senha inválidos";
 }
 ?>

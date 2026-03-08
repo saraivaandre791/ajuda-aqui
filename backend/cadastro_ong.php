@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("conexao.php");
 
 $nome = $_POST['nome_ong'];
@@ -32,10 +33,13 @@ if(mysqli_query($conn, $sql_ong)){
                     VALUES ('$rua', '$numero', '$cidade', '$estado', '$cep', '$ong_id')";
     mysqli_query($conn, $sql_endereco);
     
-    echo "Cadastro de ONG realizado com sucesso!";
-    echo "<br><a href='../frontend/html/login_ong.html'><button>Ir para Login</button></a>";
+    // 4. Salvar ID da ONG na sessão
+    $_SESSION['ong_id'] = $ong_id;
+
+    // 5. Redirecionar para o painel da ONG
+    header("Location: painel_ong.php");
+    exit;
 }else{
     echo "Erro: " . mysqli_error($conn);
 }
-
 ?>
