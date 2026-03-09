@@ -1,13 +1,11 @@
 <?php
+session_start(); // Inicia a sessão para acessar dados da ONG logada
+include("conexao.php"); // Inclui o arquivo de conexão com o banco de dados
 
+// Recupera o ID da ONG logada a partir da sessão
+$id = $_SESSION['id']; // Sugestão: padronizar para $_SESSION['ong_id']
 
-
-session_start();
-include("conexao.php");
-
-$id = $_SESSION['id']; // id da ONG logada
-
-// Atualizar nome, CNPJ e área de atuação
+// Atualiza nome, CNPJ e área de atuação, se algum desses campos foi enviado
 if (!empty($_POST['nome_ong']) || !empty($_POST['cnpj']) || !empty($_POST['atuacao'])) {
     $nome = $_POST['nome_ong'];
     $cnpj = $_POST['cnpj'];
@@ -18,7 +16,7 @@ if (!empty($_POST['nome_ong']) || !empty($_POST['cnpj']) || !empty($_POST['atuac
         WHERE id=$id");
 }
 
-// Atualiza contato
+// Atualiza contato (telefone e/ou email), se foi enviado
 if (!empty($_POST['telefone']) || !empty($_POST['email'])) {
     $telefone = $_POST['telefone'];
     $email = $_POST['email'];
@@ -28,7 +26,7 @@ if (!empty($_POST['telefone']) || !empty($_POST['email'])) {
         WHERE ong_id=$id");
 }
 
-// Atualiza endereço
+// Atualiza endereço, se algum campo foi enviado
 if (!empty($_POST['rua']) || !empty($_POST['numero']) || !empty($_POST['cidade']) || !empty($_POST['estado']) || !empty($_POST['cep'])) {
     $rua = $_POST['rua'];
     $numero = $_POST['numero'];
@@ -41,6 +39,7 @@ if (!empty($_POST['rua']) || !empty($_POST['numero']) || !empty($_POST['cidade']
         WHERE ong_id=$id");
 }
 
+// Exibe mensagem de sucesso e redireciona para o painel da ONG
 echo "<script>
         alert('Dados da ONG atualizados com sucesso!'); 
         window.location.href='/ajuda-aqui/backend/painel_ong.php';

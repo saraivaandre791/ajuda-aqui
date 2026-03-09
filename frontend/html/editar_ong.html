@@ -1,31 +1,41 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Editar ONG</title>
-    <link rel="stylesheet" href="/ajuda-aqui/frontend/css/arena.css">
+    <meta charset="UTF-8"> <!-- Define o padrão de caracteres como UTF-8 -->
+    <title>Editar ONG</title> <!-- Título da aba do navegador -->
+    <link rel="stylesheet" href="/ajuda-aqui/frontend/css/arena.css"> <!-- Importa o CSS para estilização -->
 </head>
 <body>
-    <h2>Editar dados da ONG</h2>
+    <h2>Editar dados da ONG</h2> <!-- Cabeçalho principal da página -->
 
+    <!-- Formulário que envia os dados para o backend -->
+    <!-- O action aponta para editar_ong.php, que processa as alterações -->
+    <!-- O método POST garante que os dados não fiquem visíveis na URL -->
     <form action="../../backend/editar_ong.php" method="POST">
+        
+        <!-- Campo para editar o nome da ONG -->
         <label>Nome da ONG:</label><br>
         <input type="text" name="nome_ong" placeholder="Digite o nome da ONG"><br><br>
 
+        <!-- Campo para editar o CNPJ -->
         <label>CNPJ:</label><br>
         <input type="text" name="cnpj" placeholder="Digite o CNPJ"><br><br>
 
+        <!-- Campo para editar a área de atuação da ONG -->
         <label for="atuacao">Área de Atuação</label><br>
         <textarea id="atuacao" name="atuacao" rows="4" cols="50" 
           placeholder="Descreva brevemente o que sua ONG faz...">
         </textarea><br><br>
 
+        <!-- Campo para editar o email -->
         <label>Email:</label><br>
         <input type="email" name="email" placeholder="Digite o email"><br><br>
 
+        <!-- Campo para editar o telefone -->
         <label>Telefone:</label><br>
         <input type="text" name="telefone" placeholder="Digite o telefone"><br><br>
 
+        <!-- Campos para editar endereço -->
         <label>Rua:</label><br>
         <input type="text" name="rua" placeholder="Digite a rua"><br><br>
 
@@ -41,11 +51,14 @@
         <label>CEP:</label><br>
         <input type="text" name="cep" placeholder="Digite o CEP"><br><br>
 
+        <!-- Botão que envia o formulário para salvar as alterações -->
         <button type="submit">Salvar alterações</button>
     </form>
 
     <br>
+    <!-- Botão de cancelar que volta para o painel da ONG -->
     <a href="../../backend/painel_ong.php">
-        <button>Cancelar</button></a>
+        <button>Cancelar</button>
+    </a>
 </body>
 </html>

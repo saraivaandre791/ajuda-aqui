@@ -1,17 +1,20 @@
 <?php
-session_start();
-include("conexao.php");
+session_start(); // Inicia a sessão para acessar dados do candidato logado
+include("conexao.php"); // Inclui o arquivo de conexão com o banco de dados
 
-// Verifica se o usuário está logado
+// Verifica se o candidato está logado (se existe id na sessão)
+// Caso contrário, redireciona para a página de login
 if (!isset($_SESSION['id'])) {
     header("Location: login_candidato.html");
     exit;
 }
 
-$id = intval($_SESSION['id']); // pega o id do candidato logado
+// Recupera o ID do candidato logado a partir da sessão
+//  Sugestão: padronizar para $_SESSION['candidato_id'] para evitar confusão com ONG
+$id = intval($_SESSION['id']);
 
-
-
+// Consulta SQL para buscar os dados do candidato logado
+// Junta informações de login, contato e endereço usando LEFT JOIN
 $sql = "SELECT l.id, l.nome_candidato, l.login,
             c.telefone, c.email,
             e.rua, e.numero, e.cidade, e.estado, e.cep
@@ -20,23 +23,23 @@ $sql = "SELECT l.id, l.nome_candidato, l.login,
         LEFT JOIN endereco_candidato e ON l.id = e.candidato_id 
         WHERE l.id = $id";     
 
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-
+$result = mysqli_query($conn, $sql); // Executa a consulta
+$row = mysqli_fetch_assoc($result); // Pega os dados do candidato
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-     <meta charset="UTF-8">
-     <title>Perfil do Candidato</title>
-     <link rel="stylesheet" href="/ajuda-aqui/frontend/css/arena.css">
+     <meta charset="UTF-8"> <!-- Define o padrão de caracteres -->
+     <title>Perfil do Candidato</title> <!-- Título da aba do navegador -->
+     <link rel="stylesheet" href="/ajuda-aqui/frontend/css/arena.css"> <!-- Importa o CSS -->
 </head>
 <body>
      <div class="perfil-container"> 
-        <h2>Perfil do Candidato</h2>
+        <h2>Perfil do Candidato</h2> <!-- Cabeçalho principal da página -->
     
     <?php if ($row): ?>
+         <!-- Exibe os dados do candidato logado -->
          <div class="info"><strong>Nome:</strong> <?php echo $row['nome_candidato']; ?></div>
          <div class="info"><strong>Login:</strong> <?php echo $row['login']; ?></div>
          <div class="info"><strong>Telefone:</strong> <?php echo $row['telefone']; ?></div>
@@ -46,6 +49,7 @@ $row = mysqli_fetch_assoc($result);
          </div>
          <div class="info"><strong>CEP:</strong> <?php echo $row['cep']; ?></div><br>
 
+         <!-- Botões de ação: editar informações ou ver ONGs cadastradas -->
          <div class="actions">
             <a href="../frontend/html/editar_candidato.html">
                 <button>Editar Informações</button>
@@ -55,9 +59,9 @@ $row = mysqli_fetch_assoc($result);
             </a>
          </div>
     <?php else: ?>
+        <!-- Caso não encontre dados do candidato -->
         <p>Nenhum candidato encontrado. Faça login novamente.</p>
     <?php endif; ?>
      </div>
-            
-
 </body>
+</html>

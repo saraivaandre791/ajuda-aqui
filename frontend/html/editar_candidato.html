@@ -1,24 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Dados</title>
-    <link rel="stylesheet" href="../css/arena.css">
+    <meta charset="UTF-8"> <!-- Define o padrão de caracteres como UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ajusta a página para ser responsiva em dispositivos móveis -->
+    <title>Editar Dados</title> <!-- Título da aba do navegador -->
+    <link rel="stylesheet" href="../css/arena.css"> <!-- Importa o arquivo CSS para estilização -->
 </head>
 <body>
-    <h2>Editar Dados do Candidato</h2>
+    <h2>Editar Dados do Candidato</h2> <!-- Cabeçalho principal da página -->
+
+    <!-- Formulário que envia os dados para o backend -->
+    <!-- O action aponta para editar_candidato.php, que processa as alterações -->
+    <!-- O método POST garante que os dados não fiquem visíveis na URL -->
     <form action="../../backend/editar_candidato.php" method="POST">
         
+        <!-- Campo para editar o nome do candidato -->
         <label>Nome:</label>
         <input type="text" name="nome_candidato" required><br>
 
+        <!-- Campo para editar o telefone -->
         <label>Telefone:</label>
         <input type="text" name="telefone"><br>
 
+        <!-- Campo para editar o email -->
         <label>Email:</label>
         <input type="email" name="email"><br>
 
+        <!-- Campos para editar endereço -->
         <label>Rua:</label>
         <input type="text" name="rua"><br>
 
@@ -34,10 +42,13 @@
         <label>CEP:</label>
         <input type="text" name="cep"><br>
 
+        <!-- Botão que envia o formulário para salvar as alterações -->
         <button type="submit">Salvar Alterações</button>
-
-        
     </form>
+    <br>
+
+    <a href="../../backend/perfil_candidato.php">
+        <button>Cancelar</button>
     
 </body>
 </html>
