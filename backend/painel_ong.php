@@ -11,7 +11,7 @@ if (!isset($_SESSION['ong_id'])) {
 
 // Recupera o ID da ONG logada a partir da sessão
 //  Aqui está usando $_SESSION['id'], mas o ideal é padronizar para $_SESSION['ong_id']
-$id = intval($_SESSION['id']);
+$id = intval($_SESSION['ong_id']);
 
 // Consulta SQL para buscar os dados da ONG logada
 // Junta informações de login, contato e endereço usando LEFT JOIN
@@ -57,10 +57,20 @@ $row = mysqli_fetch_assoc($result); // Pega os dados da ONG
         <!-- Botão para visualizar candidatos cadastrados -->
         <a href="listar_candidatos.php">
             <button>Ver candidatos</button></a>
+
+        <!-- Botão para deslogar -->    
+        <br>
+        <a href="../backend/ong_logout.php">
+            <button>Sair</button>
+        </a>
+
     <?php else: ?>
         <!-- Caso não encontre dados da ONG -->
         <p>Dados da ONG não encontrados. Faça login novamente.</p>
-    <?php endif; ?>
+    <?php endif; 
+    
+    
+?>
 
 </body>
 </html>

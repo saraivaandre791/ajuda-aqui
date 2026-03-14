@@ -1,49 +1,44 @@
 <?php
-session_start(); // Inicia a sessão para acessar dados do usuário logado
-include("conexao.php"); // Inclui o arquivo de conexão com o banco de dados
+session_start();
+include("conexao.php");
 
-// Recupera o ID do candidato logado a partir da sessão
-$id = $_SESSION['id']; //  Sugestão: padronizar para $_SESSION['candidato_id']
+$id = $_SESSION['id']; // ID do candidato logado
 
 // Captura os dados enviados pelo formulário
-$nome = $_POST['nome_candidato'];
-$telefone = $_POST['telefone'];
-$email = $_POST['email'];
-$rua = $_POST['rua'];
-$numero = $_POST['numero'];
-$cidade = $_POST['cidade'];
-$estado = $_POST['estado'];
-$cep = $_POST['cep'];
+$nome    = $_POST['nome_candidato'];
+$telefone= $_POST['telefone'];
+$email   = $_POST['email'];
+$rua     = $_POST['rua'];
+$numero  = $_POST['numero'];
+$cidade  = $_POST['cidade'];
+$estado  = $_POST['estado'];
+$cep     = $_POST['cep'];
 
-// Atualiza o nome do candidato, se foi enviado
-if (!empty($_POST['nome_candidato'])) {
-    $nome = $_POST['nome_candidato'];
+// Atualiza nome
+if (!empty($nome)) {
     mysqli_query($conn, "UPDATE logins SET nome_candidato='$nome' WHERE id=$id");
 }
 
-// Atualiza contato (telefone e/ou email), se foi enviado
-if (!empty($_POST['telefone']) || !empty($_POST['email'])) {
-    $telefone = $_POST['telefone'];
-    $email = $_POST['email'];
-    mysqli_query($conn, "UPDATE contato_candidato SET telefone='$telefone', email='$email' WHERE candidato_id=$id");
+// Atualiza ou insere contato
+if (!empty($telefone) || !empty($email)) {
+    $sql_contato = "INSERT INTO contato_candidato (candidato_id, telefone, email)
+                    VALUES ($id, '$telefone', '$email')
+                    ON DUPLICATE KEY UPDATE telefone='$telefone', email='$email'";
+    mysqli_query($conn, $sql_contato);
 }
 
-// Atualiza endereço, se algum campo foi enviado
-if (!empty($_POST['rua']) || !empty($_POST['numero']) || !empty($_POST['cidade']) || !empty($_POST['estado']) || !empty($_POST['cep'])) {
-    $rua = $_POST['rua'];
-    $numero = $_POST['numero'];
-    $cidade = $_POST['cidade'];
-    $estado = $_POST['estado'];
-    $cep = $_POST['cep'];
-
-    mysqli_query($conn, "UPDATE endereco_candidato 
-        SET rua='$rua', numero='$numero', cidade='$cidade', estado='$estado', cep='$cep' 
-        WHERE candidato_id=$id");
+// Atualiza ou insere endereço
+if (!empty($rua) || !empty($numero) || !empty($cidade) || !empty($estado) || !empty($cep)) {
+    $sql_endereco = "INSERT INTO endereco_candidato (candidato_id, rua, numero, cidade, estado, cep)
+                     VALUES ($id, '$rua', '$numero', '$cidade', '$estado', '$cep')
+                     ON DUPLICATE KEY UPDATE 
+                         rua='$rua', numero='$numero', cidade='$cidade', estado='$estado', cep='$cep'";
+    mysqli_query($conn, $sql_endereco);
 }
 
-// Exibe mensagem de sucesso e redireciona para o perfil do candidato
+// Mensagem de sucesso e redirecionamento
 echo "<script>
-        alert('Dados atualizados com sucesso!'); 
+        alert('Dados atualizados com sucesso!');
         window.location.href='perfil_candidato.php';
       </script>";
 ?>

@@ -57,6 +57,11 @@ $row = mysqli_fetch_assoc($result); // Pega os dados do candidato
             <a href="../backend/listar_ongs.php">
                 <button>Ver ONGs</button>
             </a>
+            <br>
+            <a href="../backend/logout.php">
+                <button>Sair</button>
+            </a>
+
          </div>
     <?php else: ?>
         <!-- Caso não encontre dados do candidato -->

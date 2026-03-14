@@ -34,16 +34,19 @@ if(mysqli_query($conn, $sql_candidato)){
 
     // 3. Inserir endereço do candidato, também ligado ao ID
     $sql_endereco = "INSERT INTO endereco_candidato (rua, numero, cidade, estado, cep, candidato_id)
-                    VALUES ('$rua', '$numero', '$cidade', '$estado', '$cep', '$candidato_id')";
-    mysqli_query($conn, $sql_endereco);
+                 VALUES ('$rua', '$numero', '$cidade', '$estado', '$cep', '$candidato_id')
+                 ON DUPLICATE KEY UPDATE 
+                     rua='$rua', numero='$numero', cidade='$cidade', estado='$estado', cep='$cep'";
 
-    // Se houve erro no endereço, mostra mensagem
-    if(!mysqli_query($conn, $sql_endereco)){ 
-        echo "Erro endereço: " . mysqli_error($conn); 
-    }
+if (!mysqli_query($conn, $sql_endereco)) { 
+    echo "Erro endereço: " . mysqli_error($conn); 
+}
+
+session_start(); // inicia a sessão
+$_SESSION['id'] = $candidato_id; // guarda o ID do novo candidato
 
     // Mensagem final de sucesso + redirecionamento para peerfil
-    header("Location: perfil_candidato.php?id=$candidato_id");
+    header("Location: /ajuda-aqui/backend/perfil_candidato.php?id=$candidato_id");
     exit;
     
 }
