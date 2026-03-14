@@ -25,7 +25,7 @@ if(mysqli_query($conn, $sql_candidato)){
     // 2. Inserir contato do candidato, usando o ID como chave estrangeira
     $sql_contato = "INSERT INTO contato_candidato (telefone, email, candidato_id)
                     VALUES ('$telefone', '$email', '$candidato_id')";
-    mysqli_query($conn, $sql_contato);
+   
 
     // Se houve erro no contato, mostra mensagem
     if(!mysqli_query($conn, $sql_contato)){ 
