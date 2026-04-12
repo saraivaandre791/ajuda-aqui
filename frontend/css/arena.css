@@ -3,7 +3,7 @@ body{
     background-image: linear-gradient(to right, rgb(20, 147, 220), rgb(17, 54, 71));
   }
 
-  body.index-home {
+  body.arena-page {
     margin: 0;
     min-height: 100vh;
     display: flex;
@@ -11,6 +11,310 @@ body{
     align-items: center;
     justify-content: center;
     text-align: center;
+    padding: clamp(1rem, 4vw, 2rem);
+    box-sizing: border-box;
+    font-family: system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background:
+      radial-gradient(ellipse 120% 80% at 50% -30%, rgba(224, 242, 254, 0.95) 0%, transparent 55%),
+      linear-gradient(165deg, #0c2340 0%, #0a4d68 42%, #0c2340 100%);
+    color: #0c2340;
+  }
+
+  .arena-card {
+    width: 100%;
+    max-width: 420px;
+    padding: clamp(1.75rem, 5vw, 2.5rem) clamp(1.5rem, 4vw, 2rem);
+    background: rgba(255, 255, 255, 0.97);
+    border-radius: 20px;
+    box-shadow:
+      0 4px 24px rgba(12, 35, 64, 0.12),
+      0 24px 48px rgba(12, 35, 64, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+  }
+
+  .arena-card--wide {
+    max-width: min(720px, 100%);
+  }
+
+  .arena-card--form {
+    text-align: left;
+  }
+
+  .arena-card--form > h2 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: clamp(1.35rem, 3.5vw, 1.65rem);
+    font-weight: 700;
+    color: #0c2340;
+  }
+
+  .arena-login-head {
+    text-align: center;
+    margin: 0 0 1.35rem;
+  }
+
+  .arena-login-kicker {
+    margin: 0 0 0.4rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: #0891b2;
+  }
+
+  .arena-login-title {
+    margin: 0 0 0.5rem;
+    font-size: clamp(1.45rem, 4vw, 1.85rem);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1.2;
+    color: #0c2340;
+  }
+
+  .arena-login-lead {
+    margin: 0;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: #64748b;
+    font-weight: 500;
+    max-width: 26ch;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .arena-brand {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .arena-logo-sm {
+    display: block;
+    width: min(140px, 42vw);
+    height: auto;
+    margin: 0 auto 0.5rem;
+    border-radius: 10px;
+    object-fit: contain;
+  }
+
+  .arena-card--form label {
+    display: block;
+    margin: 0.65rem 0 0.3rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #334155;
+  }
+
+  .arena-card--form input:not([type="hidden"]):not([type="checkbox"]):not([type="radio"]),
+  .arena-card--form textarea,
+  .arena-card--form select {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 0.65rem 0.85rem;
+    margin-bottom: 0.15rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: inherit;
+    font-weight: 500;
+    background: #fff;
+    color: #0c2340;
+  }
+
+  .arena-card--form textarea {
+    min-height: 5rem;
+    resize: vertical;
+  }
+
+  .arena-card--form input:focus-visible,
+  .arena-card--form textarea:focus-visible,
+  .arena-card--form select:focus-visible {
+    outline: none;
+    border-color: #0891b2;
+    box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.2);
+  }
+
+  .arena-card--form h3 {
+    margin: 1.35rem 0 0.5rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #0c2340;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 0.35rem;
+  }
+
+  .arena-card--form .arena-footnote {
+    text-align: center;
+    margin: 1.25rem 0 0.35rem;
+    font-size: 0.9rem;
+    color: #475569;
+  }
+
+  .arena-card--form .arena-actions,
+  .arena-card--profile .arena-actions {
+    margin-top: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .arena-card--profile {
+    text-align: left;
+    max-width: min(560px, 100%);
+  }
+
+  .arena-card--profile > h2 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 1.25rem;
+    font-size: clamp(1.35rem, 3.5vw, 1.65rem);
+    font-weight: 700;
+    color: #0c2340;
+  }
+
+  .arena-profile-dl {
+    margin: 0;
+  }
+
+  .arena-profile-dl dt {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #64748b;
+    margin: 0.85rem 0 0.25rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid #e2e8f0;
+  }
+
+  .arena-profile-dl dt:first-child {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .arena-profile-dl dd {
+    margin: 0 0 0.15rem;
+    color: #0c2340;
+    font-weight: 600;
+    line-height: 1.45;
+    font-size: 0.95rem;
+  }
+
+  .arena-card--form button[type="submit"] {
+    width: 100%;
+    padding: 0.85rem 1.25rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(8, 145, 178, 0.35);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .arena-card--form button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(8, 145, 178, 0.45);
+  }
+
+  .arena-card--form button[type="submit"]:focus-visible {
+    outline: 3px solid #0891b2;
+    outline-offset: 3px;
+  }
+
+  .index-logo {
+    display: block;
+    width: min(280px, 85vw);
+    height: auto;
+    margin: 0 auto 1.25rem;
+    border-radius: 12px;
+    object-fit: contain;
+  }
+
+  .index-title {
+    margin: 0 0 0.5rem;
+    font-size: clamp(1.5rem, 4vw, 1.85rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #0c2340;
+  }
+
+  .index-lead {
+    margin: 0 0 1.75rem;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: #334155;
+  }
+
+  .index-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .index-cta,
+  .arena-cta {
+    display: block;
+    padding: 0.85rem 1.25rem;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    box-sizing: border-box;
+  }
+
+  .index-cta:focus-visible,
+  .arena-cta:focus-visible {
+    outline: 3px solid #0891b2;
+    outline-offset: 3px;
+  }
+
+  .index-cta--outline:focus-visible,
+  .arena-cta--outline:focus-visible {
+    outline-color: #0c2340;
+  }
+
+  .index-cta--primary,
+  .arena-cta--primary {
+    background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(8, 145, 178, 0.35);
+  }
+
+  .index-cta--primary:hover,
+  .arena-cta--primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(8, 145, 178, 0.45);
+  }
+
+  .index-cta--outline,
+  .arena-cta--outline {
+    background: transparent;
+    color: #0c2340;
+    border: 2px solid #0c2340;
+  }
+
+  .index-cta--outline:hover,
+  .arena-cta--outline:hover {
+    background: rgba(12, 35, 64, 0.06);
+    transform: translateY(-2px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .index-cta--primary:hover,
+    .index-cta--outline:hover,
+    .arena-cta--primary:hover,
+    .arena-cta--outline:hover,
+    .arena-card--form button[type="submit"]:hover {
+      transform: none;
+    }
   }
   div#tabela{
     align-items: center;
