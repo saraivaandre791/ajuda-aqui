@@ -2,32 +2,37 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <!-- Define compatibilidade com versões antigas do Internet Explorer -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Ajusta a página para ser responsiva em dispositivos móveis -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Candidato</title> <!-- Título da aba do navegador -->
-    <link rel="stylesheet" href="../css/arena.css"> <!-- Importa o CSS para estilização -->
-    <link rel="shortcut icon" type="image/svg" href="../static/abobora.ico"/> <!-- Ícone da aba do navegador -->
+    <title>AjudAqui</title>
+    <link rel="stylesheet" href="../css/arena.css">
+    <link rel="shortcut icon" type="image/svg" href="../static/abobora.ico"/>
 </head>
-<body>
-    <h2>Login - Candidato</h2> <!-- Cabeçalho principal da página -->
+<body class="arena-page">
+    <main class="arena-card arena-card--form" role="main">
+        <div class="arena-brand">
+            <img src="../logo/LOGO.jpg" alt="AjudAqui" class="arena-logo-sm" width="140">
+        </div>
+        <header class="arena-login-head">
+            <p class="arena-login-kicker">Área do candidato</p>
+            <h2 class="arena-login-title">Bem-vindo de volta</h2>
+            <p class="arena-login-lead">Entre com seu usuário e senha para acessar sua conta.</p>
+        </header>
 
-    <!-- Formulário de login do candidato -->
-    <!-- O action aponta para login_candidato.php, que processa os dados -->
-    <!-- O método POST garante que os dados não fiquem visíveis na URL -->
-    <form action="../../backend/login_candidato.php" method="POST">
-        <!-- Campo para o usuário digitar seu login -->
-        <input type="text" name="login" placeholder="Usuário" required><br>
-        <!-- Campo para o usuário digitar sua senha -->
-        <input type="password" name="senha" placeholder="Senha" required><br>
-        <!-- Botão que envia o formulário -->
-        <button type="submit">Entrar</button>
-    </form>
+        <form action="../../backend/login_candidato.php" method="POST">
+            <label for="login">Usuário</label>
+            <input type="text" id="login" name="login" placeholder="Usuário" required>
 
-    <!-- Link para cadastro de novo candidato -->
-    <p>Não tem cadastro?</p>
-    <a href="cadastro_candidato.html"><button>Cadastrar-se</button></a>
- 
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" name="senha" placeholder="Senha" required>
+
+            <div class="arena-actions">
+                <button type="submit">Entrar</button>
+            </div>
+        </form>
+
+        <p class="arena-footnote">Não tem cadastro?</p>
+        <a href="cadastro_candidato.html" class="arena-cta arena-cta--outline">Cadastrar-se</a>
+    </main>
 </body>
 </html>

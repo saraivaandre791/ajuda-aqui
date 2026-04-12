@@ -3,65 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Candidato</title>
-    <!-- Importa o arquivo CSS para estilizar a página -->
+    <title>AjudAqui</title>
     <link rel="stylesheet" href="../css/arena.css">
-
-    <!-- Define o ícone (favicon) da aba do navegador -->
     <link rel="shortcut icon" type="image/svg" href="../static/abobora.ico"/>
 </head>
-<body>
-    <h2>Cadastro de Candidato</h2>
+<body class="arena-page">
+    <main class="arena-card arena-card--wide arena-card--form" role="main">
+        <div class="arena-brand">
+            <img src="../logo/LOGO.jpg" alt="AjudAqui" class="arena-logo-sm" width="140">
+        </div>
+        <h2>Cadastro de candidato</h2>
 
-    <!-- Formulário de cadastro que envia os dados para o backend -->
-    <!-- action: arquivo PHP que vai processar os dados -->
-    <!-- method: POST (envia os dados de forma segura, sem aparecer na URL) -->
-    <form action="../../backend/cadastro_candidato.php" method="POST">
+        <form action="../../backend/cadastro_candidato.php" method="POST">
+            <label for="nome_candidato">Nome completo</label>
+            <input type="text" id="nome_candidato" name="nome_candidato" placeholder="Nome completo" required>
 
-        <!-- Campos de dados pessoais -->
-         <label for="nome_candidato">Nome completo:</label>
-        <input type="text" name="nome_candidato" placeholder="Nome completo" required><br><br>
+            <label for="login">Usuário</label>
+            <input type="text" id="login" name="login" placeholder="Usuário" required>
 
-        <label for="login">Usuário</label>
-        <input type="text" name="login" placeholder="Usuário" required><br><br>
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" name="senha" placeholder="Senha" required>
 
-        <label for="senha">Senha</label>
-        <input type="password" name="senha" placeholder="Senha" required><br>
+            <h3>Contato</h3>
 
-         <!-- Seção de contato -->
-        <h3>Contato</h3>
+            <label for="telefone">Telefone</label>
+            <input type="text" id="telefone" name="telefone" placeholder="Telefone" required>
 
-        <label for="telefone">Telefone</label>
-        <input type="text" name="telefone" placeholder="Telefone" required><br><br>
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" placeholder="E-mail" required>
 
-        <label for="email">Email</label>
-        <input type="email" name="email" placeholder="Email" required><br>
+            <h3>Endereço</h3>
 
-        <!-- Seção de endereço -->
-        <h3>Endereço</h3>
+            <label for="rua">Rua</label>
+            <input type="text" id="rua" name="rua" placeholder="Rua" required>
 
-        <label for="rua">Rua</label>
-        <input type="text" name="rua" placeholder="Rua" required><br><br>
+            <label for="numero">Número</label>
+            <input type="text" id="numero" name="numero" placeholder="Número" required>
 
-         <label for="numero">Número</label>
-        <input type="text" name="numero" placeholder="Número" required><br><br>
+            <label for="cidade">Cidade</label>
+            <input type="text" id="cidade" name="cidade" placeholder="Cidade" required>
 
-        <Label for="cidade">Cidade</Label>
-        <input type="text" name="cidade" placeholder="Cidade" required><br><br>
+            <label for="estado">Estado</label>
+            <input type="text" id="estado" name="estado" placeholder="Estado" required>
 
-        <label for="estado">Estado</label>
-        <input type="text" name="estado" placeholder="Estado" required><br><br>
+            <label for="cep">CEP</label>
+            <input type="text" id="cep" name="cep" placeholder="CEP" required>
 
-        <label for="cep">CEP</label>
-        <input type="text" name="cep" placeholder="CEP" required><br>
-
-        <br>
-        <br>
-
-        <!-- Botão para enviar o formulário -->
-        <button type="submit">Cadastrar</button>
-    </form>
-
-    
+            <div class="arena-actions">
+                <button type="submit">Cadastrar</button>
+            </div>
+        </form>
+    </main>
 </body>
 </html>
