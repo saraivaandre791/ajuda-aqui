@@ -3,7 +3,7 @@ session_start();
 include("conexao.php");
 
 if (!isset($_SESSION['id'])) {
-    header("Location: login_candidato.html");
+    header("Location: ../frontend/html/login_candidato.html");
     exit;
 }
 
@@ -26,13 +26,13 @@ $row = mysqli_fetch_assoc($result);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AjudAqui</title>
-    <link rel="stylesheet" href="/ajuda-aqui/frontend/css/arena.css">
-    <link rel="shortcut icon" type="image/svg" href="/ajuda-aqui/frontend/static/abobora.ico"/>
+    <link rel="stylesheet" href="../frontend/css/arena.css">
+    <link rel="shortcut icon" type="image/svg" href="../frontend/static/abobora.ico"/>
 </head>
 <body class="arena-page">
     <main class="arena-card arena-card--profile" role="main">
         <div class="arena-brand">
-            <img src="/ajuda-aqui/frontend/logo/LOGO.jpg" alt="AjudAqui" class="arena-logo-sm" width="140">
+            <img src="../frontend/logo/LOGO.jpg" alt="AjudAqui" class="arena-logo-sm" width="140">
         </div>
         <h2>Perfil do candidato</h2>
 

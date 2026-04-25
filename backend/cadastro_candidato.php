@@ -46,7 +46,7 @@ session_start(); // inicia a sessão
 $_SESSION['id'] = $candidato_id; // guarda o ID do novo candidato
 
     // Mensagem final de sucesso + redirecionamento para peerfil
-    header("Location: /ajuda-aqui/backend/perfil_candidato.php?id=$candidato_id");
+    header("Location: perfil_candidato.php");
     exit;
     
 }

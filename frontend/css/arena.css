@@ -20,11 +20,18 @@ body{
     color: #0c2340;
   }
 
+  /* Listagens e páginas longas: alinha ao topo em vez de centralizar na vertical */
+  body.arena-page.arena-page--stack {
+    justify-content: flex-start;
+    padding-top: clamp(1.25rem, 4vw, 2.5rem);
+    padding-bottom: clamp(1.25rem, 4vw, 2.5rem);
+  }
+
   .arena-card {
     width: 100%;
     max-width: 420px;
     padding: clamp(1.75rem, 5vw, 2.5rem) clamp(1.5rem, 4vw, 2rem);
-    background: rgba(255, 255, 255, 0.97);
+    background: rgba(241, 251, 253);
     border-radius: 20px;
     box-shadow:
       0 4px 24px rgba(12, 35, 64, 0.12),
@@ -34,6 +41,49 @@ body{
 
   .arena-card--wide {
     max-width: min(720px, 100%);
+  }
+
+  .arena-card--wide.arena-card--grid {
+    max-width: min(1100px, 100%);
+    text-align: left;
+  }
+
+  .arena-list-head {
+    text-align: center;
+    margin: 0 0 1.25rem;
+  }
+
+  .arena-list-head .arena-login-kicker {
+    margin: 0 0 0.35rem;
+  }
+
+  .arena-list-head .arena-login-title {
+    margin: 0 0 0.35rem;
+  }
+
+  .arena-card--grid .card-container {
+    justify-content: center;
+  }
+
+  .arena-card--grid .card {
+    border: 1px solid rgba(12, 35, 64, 0.12);
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: 0 2px 12px rgba(12, 35, 64, 0.08);
+  }
+
+  .arena-card--grid .card h3 {
+    color: #0c2340;
+    border-bottom-color: #e2e8f0;
+  }
+
+  .arena-card--grid .card p {
+    color: #334155;
+    font-size: 0.9rem;
+  }
+
+  .arena-card--grid .card .arena-cta {
+    margin-top: 0.75rem;
   }
 
   .arena-card--form {

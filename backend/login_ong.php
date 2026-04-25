@@ -1,30 +1,44 @@
 <?php
-session_start(); // Inicia a sessão para armazenar dados da ONG logada
-include("conexao.php"); // Inclui o arquivo de conexão com o banco de dados
+session_start();
+include("conexao.php");
 
-// Captura os dados enviados pelo formulário de login
-// Se não houver valor, define como string vazia para evitar erros
 $login = $_POST['login'] ?? '';
 $senha = $_POST['senha'] ?? '';
 
-// Consulta SQL para verificar se existe uma ONG com esse login e senha
 $sql = "SELECT * FROM login_ong WHERE login='$login' AND senha='$senha'";
-$result = mysqli_query($conn, $sql); // Executa a consulta
+$result = mysqli_query($conn, $sql);
 
-// Se encontrou algum registro válido
 if ($result && mysqli_num_rows($result) > 0) {
-    $row = mysqli_fetch_assoc($result); // Pega os dados da ONG
-
-    // Salva informações da ONG na sessão para identificar quem está logado
-    $_SESSION['ong_id'] = $row['id']; // sugestão Padronizar para ong_id
-    $_SESSION['tipo'] = "ong"; // Define o tipo de usuário como ONG
-    $_SESSION['login'] = $row['login']; // Guarda o login usado
-
-    // Redireciona para o painel da ONG
+    $row = mysqli_fetch_assoc($result);
+    $_SESSION['ong_id'] = $row['id'];
+    $_SESSION['tipo'] = "ong";
+    $_SESSION['login'] = $row['login'];
     header("Location: painel_ong.php");
     exit;
-} else {
-    // Caso não exista ONG com esse login/senha
-    echo "Usuário ou senha inválidos";
 }
 ?>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login — AjudAqui</title>
+    <link rel="stylesheet" href="../frontend/css/arena.css">
+    <link rel="shortcut icon" type="image/svg" href="../frontend/static/abobora.ico"/>
+</head>
+<body class="arena-page">
+    <main class="arena-card arena-card--form" role="main">
+        <div class="arena-brand">
+            <img src="../frontend/logo/LOGO.jpg" alt="AjudAqui" class="arena-logo-sm" width="140">
+        </div>
+        <header class="arena-login-head">
+            <p class="arena-login-kicker">Área da ONG</p>
+            <h2 class="arena-login-title">Não foi possível entrar</h2>
+            <p class="arena-login-lead">Usuário ou senha inválidos. Confira os dados e tente novamente.</p>
+        </header>
+        <div class="arena-actions">
+            <a href="../frontend/html/login_ong.html" class="arena-cta arena-cta--primary">Voltar ao login</a>
+        </div>
+    </main>
+</body>
+</html>
