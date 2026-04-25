@@ -62,6 +62,6 @@ if (!empty($updatesEndereco)) {
 // Mensagem de sucesso
 echo "<script>
         alert('Dados da ONG atualizados com sucesso!');
-        window.location.href='/ajuda-aqui/backend/painel_ong.php';
+        window.location.href='painel_ong.php';
       </script>";
 ?>
