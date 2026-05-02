@@ -53,10 +53,12 @@ $row = mysqli_fetch_assoc($result);
             </dl>
 
             <div class="arena-actions">
-                <a href="../frontend/html/editar_candidato.html" class="arena-cta arena-cta--primary">Editar informações</a>
-                <a href="listar_ongs.php" class="arena-cta arena-cta--outline">Ver ONGs</a>
-                <a href="logout.php" class="arena-cta arena-cta--outline">Sair</a>
-            </div>
+    <a href="../frontend/html/editar_candidato.html" class="arena-cta arena-cta--primary">Editar informações</a>
+    <a href="listar_ongs.php" class="arena-cta arena-cta--outline">Ver ONGs</a>
+    <a href="buscar_vagas.php" class="arena-cta arena-cta--primary">Buscar vagas</a>
+    <a href="logout.php" class="arena-cta arena-cta--outline">Sair</a>
+</div>
+
         <?php else: ?>
             <p class="arena-footnote" style="margin-top:0">Nenhum candidato encontrado. Faça login novamente.</p>
         <?php endif; ?>

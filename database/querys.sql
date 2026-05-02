@@ -86,6 +86,31 @@ ong_id int,
 foreign key(ong_id) references login_ong(id)
 );
 
+-- comando pra criar tabela vaga
+CREATE TABLE vaga (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(100) NOT NULL,
+    descricao TEXT,
+    cidade VARCHAR(50),
+    area VARCHAR(100),
+    status ENUM('ativa','encerrada') DEFAULT 'ativa',
+    ong_id INT,
+    FOREIGN KEY (ong_id) REFERENCES login_ong(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+-- comando pra criar tabela de candidaturas
+CREATE TABLE candidatura (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    candidato_id INT,
+    vaga_id INT,
+    data_candidatura DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (candidato_id) REFERENCES logins(id) ON DELETE CASCADE,
+    FOREIGN KEY (vaga_id) REFERENCES vaga(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+
 /*
 comandos para visualizar as tabelas no woekbench
 */

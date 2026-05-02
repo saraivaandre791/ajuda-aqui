@@ -1,6 +1,6 @@
 <?php
-session_start(); // Inicia a sessão para acessar dados da ONG logada
-include("conexao.php"); // Inclui o arquivo de conexão com o banco de dados
+session_start();
+include("conexao.php");
 
 if (!isset($_SESSION['ong_id'])) {
     header("Location: ../frontend/html/login_ong.html");
@@ -27,6 +27,12 @@ if ($row) {
         ($row['cidade'] ?? '') . '/' . ($row['estado'] ?? '')
     );
 }
+
+// Consulta vagas da ONG logada
+$sqlVagas = "SELECT id, titulo, descricao, cidade, area 
+             FROM vaga 
+             WHERE ong_id = $id";
+$resultVagas = mysqli_query($conn, $sqlVagas);
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -66,9 +72,35 @@ if ($row) {
                 <dd><?php echo htmlspecialchars($row['atuacao'] ?? ''); ?></dd>
             </dl>
 
+            <!-- Listagem de vagas publicadas -->
+            <h3>Vagas publicadas</h3>
+            <div class="card-container">
+                <?php if ($resultVagas && mysqli_num_rows($resultVagas) > 0): ?>
+                    <?php while ($vaga = mysqli_fetch_assoc($resultVagas)): ?>
+                        <div class="card">
+                            <h4><?php echo htmlspecialchars($vaga['titulo']); ?></h4>
+                            <p><?php echo htmlspecialchars($vaga['descricao']); ?></p>
+                            <p><strong>Cidade:</strong> <?php echo htmlspecialchars($vaga['cidade']); ?></p>
+                            <p><strong>Área:</strong> <?php echo htmlspecialchars($vaga['area']); ?></p>
+                            <div class="arena-actions">
+                                <a href="editar_vaga.php?id=<?php echo $vaga['id']; ?>" class="arena-cta arena-cta--primary">Editar</a>
+                                <a href="excluir_vaga.php?id=<?php echo $vaga['id']; ?>" class="arena-cta arena-cta--outline">Excluir</a>
+                            </div>
+                        </div>
+                    <?php endwhile; ?>
+                <?php else: ?>
+                    <p>Nenhuma vaga publicada ainda.</p>
+                <?php endif; ?>
+            </div>
+
+            <div class="arena-actions" style="margin-top:1.5rem">
+                <a href="nova_vaga.php" class="arena-cta arena-cta--primary">Criar nova vaga</a>
+            </div>
+
             <div class="arena-actions">
                 <a href="../frontend/html/editar_ong.html" class="arena-cta arena-cta--primary">Editar informações</a>
-                <a href="listar_candidatos.php" class="arena-cta arena-cta--outline">Ver candidatos</a>
+                <a href="listar_candidatos.php" class="arena-cta arena-cta--outline">Ver todos os candidatos</a>
+                <a href="listar_candidatos_vaga.php" class="arena-cta arena-cta--outline">Ver candidatos inscritos nas vagas</a>
                 <a href="ong_logout.php" class="arena-cta arena-cta--outline">Sair</a>
             </div>
         <?php else: ?>

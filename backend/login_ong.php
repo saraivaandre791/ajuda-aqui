@@ -27,6 +27,12 @@ if ($result && mysqli_num_rows($result) > 0) {
     <link rel="shortcut icon" type="image/svg" href="../frontend/static/abobora.ico"/>
 </head>
 <body class="arena-page">
+
+ <!-- Botão voltar para index -->
+    <div style="position:absolute; top:15px; right:15px;">
+        <a href="index.html" class="arena-cta arena-cta--outline">Início</a>
+    </div>
+
     <main class="arena-card arena-card--form" role="main">
         <div class="arena-brand">
             <img src="../frontend/logo/LOGO.jpg" alt="AjudAqui" class="arena-logo-sm" width="140">
